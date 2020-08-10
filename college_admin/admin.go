@@ -3,10 +3,12 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"os"
+	"strconv"
+
 	"github.com/Pallinder/go-randomdata"
 	_ "github.com/Pallinder/go-randomdata"
 	"github.com/chilts/sid"
-	"os"
 )
 
 type Mahasiswa struct {
@@ -15,28 +17,27 @@ type Mahasiswa struct {
 }
 
 type Dosen struct {
-	Id string
-	Nama string
+	Id    string
+	Nama  string
 	Kelas string
 }
 
-
 var mhs = make(map[string]Mahasiswa)
 var dosen = make(map[string]Dosen)
+
 func main() {
 	// ========== TODO CRUD MAHASISWA ==========
 	mhsGenerator(5)
 	mhsDemo()
 
 	// ========== TODO UPDATE DOSEN ==========
-	kelas := []string{"algoritma", "dasar pemograman", "aljabar"}
-	dosenGenerator(kelas)
-	dosenDemo()
-
+	// kelas := []string{"algoritma", "dasar pemograman", "aljabar"}
+	// dosenGenerator(kelas)
+	// dosenDemo()
 
 	// ========== TODO UPDATE KELAS ==========
-	kelasEdit()
-	dosenRead()
+	// kelasEdit()
+	// dosenRead()
 }
 
 func kelasEdit() {
@@ -46,8 +47,8 @@ func kelasEdit() {
 
 		// save to map
 		dosen[cariId] = Dosen{
-			Id:   dosen[cariId].Id,
-			Nama: dosen[cariId].Nama,
+			Id:    dosen[cariId].Id,
+			Nama:  dosen[cariId].Nama,
 			Kelas: kelasBaru,
 		}
 	} else {
@@ -69,8 +70,8 @@ func dosenEdit() {
 
 		// save to map
 		dosen[cariId] = Dosen{
-			Id:   dosen[cariId].Id,
-			Nama: namaBaru,
+			Id:    dosen[cariId].Id,
+			Nama:  namaBaru,
 			Kelas: dosen[cariId].Kelas,
 		}
 	} else {
@@ -100,8 +101,8 @@ func dosenGenerator(kelas []string) {
 		id := sid.Id()
 		nama := randomdata.FullName(randomdata.RandomGender)
 		dosen[id] = Dosen{
-			Id:   id,
-			Nama: nama,
+			Id:    id,
+			Nama:  nama,
 			Kelas: kelas[i],
 		}
 	}
@@ -151,7 +152,7 @@ func mhsCreate() {
 
 func mhsGenerator(jumlahMhs int) {
 	for i := 0; i < jumlahMhs; i++ {
-		id := sid.Id()
+		id := strconv.Itoa(i)
 		nama := randomdata.FullName(randomdata.RandomGender)
 		mhs[id] = Mahasiswa{
 			Id:   id,
@@ -159,7 +160,6 @@ func mhsGenerator(jumlahMhs int) {
 		}
 	}
 }
-
 
 func ScanPilihan() int {
 	var pilihan int

@@ -3,7 +3,9 @@
 github.com/Pallinder/go-randomdata
 # github.com/Pallinder/sillyname-go v0.0.0-20130730142914-97aeae9e6ba1
 ## explicit
-github.com/Pallinder/sillyname-go
 # github.com/chilts/sid v0.0.0-20190607042430-660e94789ec9
 ## explicit
 github.com/chilts/sid
+# gopkg.in/validator.v2 v2.0.0-20200605151824-2b28d334fa05
+## explicit
+gopkg.in/validator.v2
