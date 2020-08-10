@@ -29,12 +29,11 @@ type Dosen struct {
 }
 
 type resumeMhs struct {
-	idMhs      string
-	namaMhs    string
-	algo       float64
-	js         float64
-	golang     float64
-	nilaiTotal float64
+	idMhs   string
+	namaMhs string
+	algo    float64
+	js      float64
+	golang  float64
 }
 
 type kelasAlgo struct {
@@ -61,7 +60,7 @@ var golang = make(map[string]kelasGo)
 var dataMhs = make(map[string]resumeMhs)
 
 func main() {
-	// var login = false
+	var login = false
 	var opt int
 
 	// demo isi mahasiswa
@@ -69,19 +68,18 @@ func main() {
 	mhs["2"] = Mahasiswa{Id: "2", Nama: "Andi"}
 	mhs["3"] = Mahasiswa{Id: "3", Nama: "Pawit"}
 
-	//demo isi dosen
+	// demo isi dosen
 	dosen["wawan01"] = Dosen{Id: "1", Nama: "Wawan", Kelas: "Golang", Password: "dosenku123"}
 	dosen["harry02"] = Dosen{Id: "2", Nama: "Harry", Kelas: "JS", Password: "dosenku124"}
 	dosen["ferry03"] = Dosen{Id: "3", Nama: "Ferry", Kelas: "Algo", Password: "dosenku125"}
 
-	// loginUser(login)
+	loginUser(login)
 
 	for opt != 99 {
 		menu(
 			"Lihat Daftar Mahasiswa",
-			"Input Absen",
-			"Input Nilai",
-			"Delete Nilai",
+			"Input Data Mahasiswa",
+			"Show Data",
 		)
 		fmt.Scanln(&opt)
 
@@ -89,24 +87,24 @@ func main() {
 		case 1:
 			fmt.Println("=========== Data Mahasiswa =========")
 			listMahasiswa(mhs)
-
+			fmt.Println("=====================================")
 		case 2:
 			var id string
 			fmt.Println("Silahkan masukkan ID mahasiswa:")
 			fmt.Scanln(&id)
 			found := findMahasiswa(id)
-			inputAbsenMhs(found)
-
-		case 3:
-			var id string
-			fmt.Println("Silahkan masukkan ID mahasiswa:")
-			fmt.Scanln(&id)
-			found := findMahasiswa(id)
+			fmt.Printf("ID %s ditemukan dengan nama %s\n", id, found.namaMhs)
 			inputNilaiMhs(found)
 
-		case 4:
-			fmt.Println(dataMhs)
-			fmt.Println(algo)
+		case 3:
+			fmt.Println("=====================================")
+			fmt.Println("ID\t Nama\t Algoritma\t JS\t Golang\t")
+
+			for _, val := range dataMhs {
+				fmt.Printf("%s\t %s\t %.2f\t\t %.2f\t %.2f\t\n", val.idMhs, val.namaMhs, val.algo, val.js, val.golang)
+			}
+			fmt.Println("=====================================")
+			fmt.Println()
 
 		case 99:
 			fmt.Println("Sampai jumpa!")
@@ -192,134 +190,112 @@ func findMahasiswa(id string) resumeMhs {
 	return dataMhs[id]
 }
 
-func inputAbsenMhs(dataMhs resumeMhs) resumeMhs {
+func inputNilaiMhs(data resumeMhs) resumeMhs {
 	var subj string
-	var input int
-	fmt.Println("Silahkan masukkan absen kelas yang ingin di tambahkan (algoritma/golang/js)")
+	var inputN float64
+	var inputA int
+	fmt.Println("Silahkan pilih data yang ingin di input (algoritma/golang/js)")
 	fmt.Scanln(&subj)
 
-	id := dataMhs.idMhs
-	nama := dataMhs.namaMhs
+	id := data.idMhs
+	nama := data.namaMhs
+
+	fmt.Println("Silahkan input Absen Kelas", subj)
+	fmt.Scanln(&inputA)
+	fmt.Println("Silahkan input Nilai", subj)
+	fmt.Scanln(&inputN)
 
 	switch subj {
 	case "algoritma":
-		fmt.Println("Silahkan input Absen kelas Algoritma")
-		fmt.Scanln(&input)
-		absen := algo[id].absenAlgo + input
 		algo[id] = kelasAlgo{
 			namaMhs:   nama,
-			absenAlgo: absen,
-			nilaiAlgo: algo[id].nilaiAlgo,
+			absenAlgo: inputA,
+			nilaiAlgo: inputN,
 		}
 
-		fmt.Printf("Absen kelas Algoritma %s, telah di update dengan jumlah %d\n", nama, algo[id].absenAlgo)
-		return dataMhs
+		// hitung nilai total
+		bobotAbsen := (float64(inputA) / 14) * 30
+		bobotNilai := inputN * 70 / 100
+		totalNilai := bobotAbsen + bobotNilai
 
-	case "golang":
-		fmt.Println("Silahkan input Absen kelas Golang")
-		fmt.Scanln(&input)
-		absen := golang[id].absenGo + input
-		golang[id] = kelasGo{
-			namaMhs: nama,
-			absenGo: absen,
-			nilaiGo: golang[id].nilaiGo,
-		}
-
-		fmt.Printf("Absen kelas Golang %s, telah di update dengan jumlah %d\n", nama, golang[id].absenGo)
-		return dataMhs
-
-	case "js":
-		fmt.Println("Silahkan input Nilai JS")
-		fmt.Scanln(&input)
-		absen := js[id].absenJS + input
-		js[id] = kelasJS{
-			namaMhs: nama,
-			absenJS: absen,
-			nilaiJS: js[id].nilaiJS,
-		}
-
-		fmt.Printf("Nilai Algoritma %s, telah di input dengan nilai %d\n", nama, js[id].absenJS)
-		return dataMhs
-
-	default:
-		fmt.Println("Pilihan yang anda masukkan tidak valid")
-		fmt.Println()
-		break
-	}
-	return dataMhs
-}
-
-func inputNilaiMhs(dataMhs resumeMhs) resumeMhs {
-	var subj string
-	var input float64
-	fmt.Println("Silahkan masukkan nilai yang ingin di input (algoritma/golang/js)")
-	fmt.Scanln(&subj)
-
-	id := dataMhs.idMhs
-	nama := dataMhs.namaMhs
-
-	switch subj {
-	case "algoritma":
-		fmt.Println("Silahkan input Nilai Algoritma")
-		fmt.Scanln(&input)
-		algo[id] = kelasAlgo{
-			namaMhs:   nama,
-			absenAlgo: algo[id].absenAlgo,
-			nilaiAlgo: input,
-		}
+		fmt.Println(bobotAbsen)
+		fmt.Println(bobotNilai)
+		fmt.Println(totalNilai)
 
 		// input ke data mahasiswa
+		data = resumeMhs{
+			idMhs:   id,
+			namaMhs: nama,
+			algo:    totalNilai,
+			js:      js[id].nilaiJS,
+			golang:  golang[id].nilaiGo,
+		}
+
+		// masukkan ke map dataMhs
 		algo := algo[id].nilaiAlgo
-		dataMhs = resumeMhs{
-			idMhs:   id,
-			namaMhs: nama,
-			algo:    algo,
-		}
-
+		dataMhs[id] = data
 		fmt.Printf("Nilai Algoritma %s, telah di input dengan nilai %g\n", nama, algo)
-		return dataMhs
 
 	case "golang":
-		fmt.Println("Silahkan input Nilai Golang")
-		fmt.Scanln(&input)
 		golang[id] = kelasGo{
 			namaMhs: nama,
-			absenGo: golang[id].absenGo,
-			nilaiGo: input,
+			absenGo: inputA,
+			nilaiGo: inputN,
 		}
+
+		// hitung nilai total
+		bobotAbsen := (float64(inputA) / 14) * 30
+		bobotNilai := inputN * 70 / 100
+		totalNilai := bobotAbsen + bobotNilai
+
 		// input ke data mahasiswa
-		golang := golang[id].nilaiGo
-		dataMhs = resumeMhs{
+
+		fmt.Println(algo[id])
+		fmt.Println(golang[id])
+		fmt.Println(dataMhs[id])
+		data = resumeMhs{
 			idMhs:   id,
 			namaMhs: nama,
-			golang:  golang,
+			algo:    algo[id].nilaiAlgo,
+			js:      js[id].nilaiJS,
+			golang:  totalNilai,
 		}
+
+		// masukkan ke map dataMhs
+		golang := golang[id].nilaiGo
+		dataMhs[id] = data
 		fmt.Printf("Nilai Golang %s, telah di input dengan nilai %g\n", nama, golang)
-		return dataMhs
 
 	case "js":
-		fmt.Println("Silahkan input Nilai JS")
-		fmt.Scanln(&input)
 		js[id] = kelasJS{
 			namaMhs: nama,
-			absenJS: js[id].absenJS,
-			nilaiJS: input,
+			absenJS: inputA,
+			nilaiJS: inputN,
 		}
 
+		// hitung nilai total
+		bobotAbsen := (float64(inputA) / 14) * 30
+		bobotNilai := inputN * 70 / 100
+		totalNilai := bobotAbsen + bobotNilai
+
 		// input ke data mahasiswa
-		js := js[id].nilaiJS
-		dataMhs = resumeMhs{
+		data = resumeMhs{
 			idMhs:   id,
 			namaMhs: nama,
-			js:      js,
+			algo:    algo[id].nilaiAlgo,
+			js:      totalNilai,
+			golang:  golang[id].nilaiGo,
 		}
+
+		// masukkan ke map dataMhs
+		js := js[id].nilaiJS
+		dataMhs[id] = data
 		fmt.Printf("Nilai Algoritma %s, telah di input dengan nilai %g\n", nama, js)
-		return dataMhs
 
 	default:
 		fmt.Println("Pilihan yang anda masukkan tidak valid")
 		fmt.Println()
 		break
 	}
-	return dataMhs
+	return data
 }
