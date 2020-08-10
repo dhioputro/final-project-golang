@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package admin;
+import "google/protobuf/empty.proto";
+option go_package = "collegepb";
+
+message Mahasiswa {
+  string id = 1;
+  string nama = 2;
+}
+
+
+// Mahasiwa
+message CreateMhsRequest {
+  Mahasiswa mahasiswa = 1;
+}
+
+message GetMhsResponse {
+   Mahasiswa mhs = 1;
+}
+
+message EdiMhsRequest {
+  string id = 1;
+  string nama = 2;
+}
+
+message ResultMhsResponse{
+  string result = 1;
+}
+
+message DeleteMhsRequest {
+  string id = 1;
+}
+
+
+service AdminService {
+  rpc CreateMhs(CreateMhsRequest) returns (ResultMhsResponse) {}
+  rpc GetAllMhs(google.protobuf.Empty) returns (stream GetMhsResponse) {}
+  rpc EditMhs(EdiMhsRequest) returns (ResultMhsResponse) {}
+  rpc DeleteMhs(EdiMhsRequest) returns (ResultMhsResponse) {}
+
+}
