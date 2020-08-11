@@ -9,6 +9,11 @@ message Mahasiswa {
   string nama = 2;
 }
 
+message Dosen {
+  string id = 1;
+  string nama = 2;
+  string kelas = 3;
+}
 
 // Mahasiwa
 message CreateMhsRequest {
@@ -24,19 +29,37 @@ message EdiMhsRequest {
   string nama = 2;
 }
 
-message ResultMhsResponse{
-  string result = 1;
-}
-
 message DeleteMhsRequest {
   string id = 1;
 }
 
+// Dosen & Kelas
+message GetDosenResponse {
+  Dosen dosen = 1;
+}
+
+
+message EditDosenRequest{
+  string id = 1;
+  string nama = 2;
+}
+
+message EditKelasRequest{
+  string id = 1;
+  string kelas = 2;
+}
+
+message ResultResponse{
+  string result = 1;
+}
 
 service AdminService {
-  rpc CreateMhs(CreateMhsRequest) returns (ResultMhsResponse) {}
+  rpc CreateMhs(CreateMhsRequest) returns (ResultResponse) {}
   rpc GetAllMhs(google.protobuf.Empty) returns (stream GetMhsResponse) {}
-  rpc EditMhs(EdiMhsRequest) returns (ResultMhsResponse) {}
-  rpc DeleteMhs(EdiMhsRequest) returns (ResultMhsResponse) {}
+  rpc EditMhs(EdiMhsRequest) returns (ResultResponse) {}
+  rpc DeleteMhs(DeleteMhsRequest) returns (ResultResponse) {}
 
+  rpc GetAllDosen(google.protobuf.Empty) returns (stream GetDosenResponse) {}
+  rpc UpdateDosen(EditDosenRequest) returns (ResultResponse) {}
+  rpc UpdateKelas(EditKelasRequest) returns (ResultResponse) {}
 }

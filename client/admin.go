@@ -20,6 +20,63 @@ func main() {
 
 	c := collegepb.NewAdminServiceClient(conn)
 
+	//demoMhs(c)
+	getAllDosen(c)
+	editDosen(c)
+	editKelas(c)
+}
+
+func getAllDosen(c collegepb.AdminServiceClient) {
+	log.Println("Get All Data Dosen")
+	resStream, err := c.GetAllDosen(context.Background(), new(empty.Empty))
+	if err != nil {
+		log.Fatalf("Error when calling MhsGetAll: %s", err)
+	}
+	for {
+		msg, err := resStream.Recv()
+		if err == io.EOF {
+			// untuk mengakhiri end of stream
+			break
+		}
+		if err != nil {
+			log.Fatalf("Error while getting message: %s", err)
+		}
+		log.Printf("log msg.GetMhs() :  %v", msg.GetDosen())
+	}
+}
+
+func editKelas(c collegepb.AdminServiceClient) {
+	log.Println("Edit Data Kelas")
+	id := ScanString("masukan id yang diubah")
+	kelas := ScanString("masukan nama kelas baru")
+	request := &collegepb.EditKelasRequest{
+		Id:    id,
+		Kelas: kelas,
+	}
+	response, err := c.UpdateKelas(context.Background(), request)
+	if err != nil {
+		log.Fatalf("Error when calling editDosen: %s", err)
+	}
+	log.Printf("Response from server: %v\n", response)
+}
+
+func editDosen(c collegepb.AdminServiceClient) {
+	log.Println("Edit Data Dosen")
+	id := ScanString("masukan id yang diubah")
+	nama := ScanString("masukan nama baru dosen")
+	request := &collegepb.EditDosenRequest{
+		Id:   id,
+		Nama: nama,
+	}
+	response, err := c.UpdateDosen(context.Background(), request)
+	if err != nil {
+		log.Fatalf("Error when calling editDosen: %s", err)
+	}
+	log.Printf("Response from server: %v\n", response)
+
+}
+
+func demoMhs(c collegepb.AdminServiceClient) {
 	MhsCreate(c)
 	log.Println()
 	MhsGetAll(c)
@@ -27,7 +84,23 @@ func main() {
 	MhsEdit(c)
 	log.Println()
 	MhsGetAll(c)
+	log.Println()
+	MhsDelete(c)
+	log.Println()
+	MhsGetAll(c)
+}
 
+func MhsDelete(c collegepb.AdminServiceClient) {
+	log.Println("Delete Data Mahasiswa")
+	idBaru := ScanString("masukan id yang dihapus")
+	request := &collegepb.DeleteMhsRequest{
+		Id: idBaru,
+	}
+	response, err := c.DeleteMhs(context.Background(), request)
+	if err != nil {
+		log.Fatalf("Error when calling MhsEdit: %s", err)
+	}
+	log.Printf("Response from server: %v\n", response)
 }
 
 func MhsEdit(c collegepb.AdminServiceClient) {

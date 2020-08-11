@@ -85,6 +85,69 @@ func (x *Mahasiswa) GetNama() string {
 	return ""
 }
 
+type Dosen struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id    string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Nama  string `protobuf:"bytes,2,opt,name=nama,proto3" json:"nama,omitempty"`
+	Kelas string `protobuf:"bytes,3,opt,name=kelas,proto3" json:"kelas,omitempty"`
+}
+
+func (x *Dosen) Reset() {
+	*x = Dosen{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_collegepb_college_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Dosen) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Dosen) ProtoMessage() {}
+
+func (x *Dosen) ProtoReflect() protoreflect.Message {
+	mi := &file_collegepb_college_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Dosen.ProtoReflect.Descriptor instead.
+func (*Dosen) Descriptor() ([]byte, []int) {
+	return file_collegepb_college_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *Dosen) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Dosen) GetNama() string {
+	if x != nil {
+		return x.Nama
+	}
+	return ""
+}
+
+func (x *Dosen) GetKelas() string {
+	if x != nil {
+		return x.Kelas
+	}
+	return ""
+}
+
 // Mahasiwa
 type CreateMhsRequest struct {
 	state         protoimpl.MessageState
@@ -97,7 +160,7 @@ type CreateMhsRequest struct {
 func (x *CreateMhsRequest) Reset() {
 	*x = CreateMhsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_collegepb_college_proto_msgTypes[1]
+		mi := &file_collegepb_college_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -110,7 +173,7 @@ func (x *CreateMhsRequest) String() string {
 func (*CreateMhsRequest) ProtoMessage() {}
 
 func (x *CreateMhsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_collegepb_college_proto_msgTypes[1]
+	mi := &file_collegepb_college_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -123,7 +186,7 @@ func (x *CreateMhsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateMhsRequest.ProtoReflect.Descriptor instead.
 func (*CreateMhsRequest) Descriptor() ([]byte, []int) {
-	return file_collegepb_college_proto_rawDescGZIP(), []int{1}
+	return file_collegepb_college_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *CreateMhsRequest) GetMahasiswa() *Mahasiswa {
@@ -144,7 +207,7 @@ type GetMhsResponse struct {
 func (x *GetMhsResponse) Reset() {
 	*x = GetMhsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_collegepb_college_proto_msgTypes[2]
+		mi := &file_collegepb_college_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -157,7 +220,7 @@ func (x *GetMhsResponse) String() string {
 func (*GetMhsResponse) ProtoMessage() {}
 
 func (x *GetMhsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_collegepb_college_proto_msgTypes[2]
+	mi := &file_collegepb_college_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -170,7 +233,7 @@ func (x *GetMhsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMhsResponse.ProtoReflect.Descriptor instead.
 func (*GetMhsResponse) Descriptor() ([]byte, []int) {
-	return file_collegepb_college_proto_rawDescGZIP(), []int{2}
+	return file_collegepb_college_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *GetMhsResponse) GetMhs() *Mahasiswa {
@@ -192,7 +255,7 @@ type EdiMhsRequest struct {
 func (x *EdiMhsRequest) Reset() {
 	*x = EdiMhsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_collegepb_college_proto_msgTypes[3]
+		mi := &file_collegepb_college_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -205,7 +268,7 @@ func (x *EdiMhsRequest) String() string {
 func (*EdiMhsRequest) ProtoMessage() {}
 
 func (x *EdiMhsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_collegepb_college_proto_msgTypes[3]
+	mi := &file_collegepb_college_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -218,7 +281,7 @@ func (x *EdiMhsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EdiMhsRequest.ProtoReflect.Descriptor instead.
 func (*EdiMhsRequest) Descriptor() ([]byte, []int) {
-	return file_collegepb_college_proto_rawDescGZIP(), []int{3}
+	return file_collegepb_college_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *EdiMhsRequest) GetId() string {
@@ -231,53 +294,6 @@ func (x *EdiMhsRequest) GetId() string {
 func (x *EdiMhsRequest) GetNama() string {
 	if x != nil {
 		return x.Nama
-	}
-	return ""
-}
-
-type ResultMhsResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Result string `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-}
-
-func (x *ResultMhsResponse) Reset() {
-	*x = ResultMhsResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_collegepb_college_proto_msgTypes[4]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *ResultMhsResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ResultMhsResponse) ProtoMessage() {}
-
-func (x *ResultMhsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_collegepb_college_proto_msgTypes[4]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ResultMhsResponse.ProtoReflect.Descriptor instead.
-func (*ResultMhsResponse) Descriptor() ([]byte, []int) {
-	return file_collegepb_college_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *ResultMhsResponse) GetResult() string {
-	if x != nil {
-		return x.Result
 	}
 	return ""
 }
@@ -329,6 +345,211 @@ func (x *DeleteMhsRequest) GetId() string {
 	return ""
 }
 
+// Dosen & Kelas
+type GetDosenResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Dosen *Dosen `protobuf:"bytes,1,opt,name=dosen,proto3" json:"dosen,omitempty"`
+}
+
+func (x *GetDosenResponse) Reset() {
+	*x = GetDosenResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_collegepb_college_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetDosenResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetDosenResponse) ProtoMessage() {}
+
+func (x *GetDosenResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_collegepb_college_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetDosenResponse.ProtoReflect.Descriptor instead.
+func (*GetDosenResponse) Descriptor() ([]byte, []int) {
+	return file_collegepb_college_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetDosenResponse) GetDosen() *Dosen {
+	if x != nil {
+		return x.Dosen
+	}
+	return nil
+}
+
+type EditDosenRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id   string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Nama string `protobuf:"bytes,2,opt,name=nama,proto3" json:"nama,omitempty"`
+}
+
+func (x *EditDosenRequest) Reset() {
+	*x = EditDosenRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_collegepb_college_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *EditDosenRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EditDosenRequest) ProtoMessage() {}
+
+func (x *EditDosenRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_collegepb_college_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EditDosenRequest.ProtoReflect.Descriptor instead.
+func (*EditDosenRequest) Descriptor() ([]byte, []int) {
+	return file_collegepb_college_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *EditDosenRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *EditDosenRequest) GetNama() string {
+	if x != nil {
+		return x.Nama
+	}
+	return ""
+}
+
+type EditKelasRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id    string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Kelas string `protobuf:"bytes,2,opt,name=kelas,proto3" json:"kelas,omitempty"`
+}
+
+func (x *EditKelasRequest) Reset() {
+	*x = EditKelasRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_collegepb_college_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *EditKelasRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EditKelasRequest) ProtoMessage() {}
+
+func (x *EditKelasRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_collegepb_college_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EditKelasRequest.ProtoReflect.Descriptor instead.
+func (*EditKelasRequest) Descriptor() ([]byte, []int) {
+	return file_collegepb_college_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *EditKelasRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *EditKelasRequest) GetKelas() string {
+	if x != nil {
+		return x.Kelas
+	}
+	return ""
+}
+
+type ResultResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Result string `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+}
+
+func (x *ResultResponse) Reset() {
+	*x = ResultResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_collegepb_college_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ResultResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResultResponse) ProtoMessage() {}
+
+func (x *ResultResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_collegepb_college_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResultResponse.ProtoReflect.Descriptor instead.
+func (*ResultResponse) Descriptor() ([]byte, []int) {
+	return file_collegepb_college_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *ResultResponse) GetResult() string {
+	if x != nil {
+		return x.Result
+	}
+	return ""
+}
+
 var File_collegepb_college_proto protoreflect.FileDescriptor
 
 var file_collegepb_college_proto_rawDesc = []byte{
@@ -338,42 +559,68 @@ var file_collegepb_college_proto_rawDesc = []byte{
 	0x66, 0x2f, 0x65, 0x6d, 0x70, 0x74, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x2f, 0x0a,
 	0x09, 0x4d, 0x61, 0x68, 0x61, 0x73, 0x69, 0x73, 0x77, 0x61, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64,
 	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61,
-	0x6d, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x61, 0x22, 0x42,
-	0x0a, 0x10, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4d, 0x68, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x12, 0x2e, 0x0a, 0x09, 0x6d, 0x61, 0x68, 0x61, 0x73, 0x69, 0x73, 0x77, 0x61, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x2e, 0x4d, 0x61,
-	0x68, 0x61, 0x73, 0x69, 0x73, 0x77, 0x61, 0x52, 0x09, 0x6d, 0x61, 0x68, 0x61, 0x73, 0x69, 0x73,
-	0x77, 0x61, 0x22, 0x34, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x4d, 0x68, 0x73, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x22, 0x0a, 0x03, 0x6d, 0x68, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x0b, 0x32, 0x10, 0x2e, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x2e, 0x4d, 0x61, 0x68, 0x61, 0x73, 0x69,
-	0x73, 0x77, 0x61, 0x52, 0x03, 0x6d, 0x68, 0x73, 0x22, 0x33, 0x0a, 0x0d, 0x45, 0x64, 0x69, 0x4d,
-	0x68, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d,
-	0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x61, 0x22, 0x2b, 0x0a,
-	0x11, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x4d, 0x68, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x22, 0x22, 0x0a, 0x10, 0x44, 0x65,
-	0x6c, 0x65, 0x74, 0x65, 0x4d, 0x68, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e,
-	0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x32, 0x8c,
-	0x02, 0x0a, 0x0c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12,
-	0x40, 0x0a, 0x09, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4d, 0x68, 0x73, 0x12, 0x17, 0x2e, 0x61,
-	0x64, 0x6d, 0x69, 0x6e, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4d, 0x68, 0x73, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x2e, 0x52, 0x65,
-	0x73, 0x75, 0x6c, 0x74, 0x4d, 0x68, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
-	0x00, 0x12, 0x3e, 0x0a, 0x09, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x4d, 0x68, 0x73, 0x12, 0x16,
-	0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
-	0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x15, 0x2e, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x2e, 0x47,
-	0x65, 0x74, 0x4d, 0x68, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x30,
-	0x01, 0x12, 0x3b, 0x0a, 0x07, 0x45, 0x64, 0x69, 0x74, 0x4d, 0x68, 0x73, 0x12, 0x14, 0x2e, 0x61,
-	0x64, 0x6d, 0x69, 0x6e, 0x2e, 0x45, 0x64, 0x69, 0x4d, 0x68, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x1a, 0x18, 0x2e, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x2e, 0x52, 0x65, 0x73, 0x75, 0x6c,
-	0x74, 0x4d, 0x68, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x3d,
-	0x0a, 0x09, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4d, 0x68, 0x73, 0x12, 0x14, 0x2e, 0x61, 0x64,
-	0x6d, 0x69, 0x6e, 0x2e, 0x45, 0x64, 0x69, 0x4d, 0x68, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x1a, 0x18, 0x2e, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x2e, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74,
-	0x4d, 0x68, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x0b, 0x5a,
-	0x09, 0x63, 0x6f, 0x6c, 0x6c, 0x65, 0x67, 0x65, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x33,
+	0x6d, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x61, 0x22, 0x41,
+	0x0a, 0x05, 0x44, 0x6f, 0x73, 0x65, 0x6e, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x61, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x61, 0x12, 0x14, 0x0a, 0x05, 0x6b,
+	0x65, 0x6c, 0x61, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6b, 0x65, 0x6c, 0x61,
+	0x73, 0x22, 0x42, 0x0a, 0x10, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4d, 0x68, 0x73, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2e, 0x0a, 0x09, 0x6d, 0x61, 0x68, 0x61, 0x73, 0x69, 0x73,
+	0x77, 0x61, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x61, 0x64, 0x6d, 0x69, 0x6e,
+	0x2e, 0x4d, 0x61, 0x68, 0x61, 0x73, 0x69, 0x73, 0x77, 0x61, 0x52, 0x09, 0x6d, 0x61, 0x68, 0x61,
+	0x73, 0x69, 0x73, 0x77, 0x61, 0x22, 0x34, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x4d, 0x68, 0x73, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x22, 0x0a, 0x03, 0x6d, 0x68, 0x73, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x2e, 0x4d, 0x61, 0x68,
+	0x61, 0x73, 0x69, 0x73, 0x77, 0x61, 0x52, 0x03, 0x6d, 0x68, 0x73, 0x22, 0x33, 0x0a, 0x0d, 0x45,
+	0x64, 0x69, 0x4d, 0x68, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04,
+	0x6e, 0x61, 0x6d, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x61,
+	0x22, 0x22, 0x0a, 0x10, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4d, 0x68, 0x73, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x02, 0x69, 0x64, 0x22, 0x36, 0x0a, 0x10, 0x47, 0x65, 0x74, 0x44, 0x6f, 0x73, 0x65, 0x6e,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x22, 0x0a, 0x05, 0x64, 0x6f, 0x73, 0x65,
+	0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x2e,
+	0x44, 0x6f, 0x73, 0x65, 0x6e, 0x52, 0x05, 0x64, 0x6f, 0x73, 0x65, 0x6e, 0x22, 0x36, 0x0a, 0x10,
+	0x45, 0x64, 0x69, 0x74, 0x44, 0x6f, 0x73, 0x65, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64,
+	0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04,
+	0x6e, 0x61, 0x6d, 0x61, 0x22, 0x38, 0x0a, 0x10, 0x45, 0x64, 0x69, 0x74, 0x4b, 0x65, 0x6c, 0x61,
+	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x6b, 0x65, 0x6c, 0x61,
+	0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6b, 0x65, 0x6c, 0x61, 0x73, 0x22, 0x28,
+	0x0a, 0x0e, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x16, 0x0a, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x32, 0xcc, 0x03, 0x0a, 0x0c, 0x41, 0x64, 0x6d,
+	0x69, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x3d, 0x0a, 0x09, 0x43, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x4d, 0x68, 0x73, 0x12, 0x17, 0x2e, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x2e, 0x43,
+	0x72, 0x65, 0x61, 0x74, 0x65, 0x4d, 0x68, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x15, 0x2e, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x2e, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x3e, 0x0a, 0x09, 0x47, 0x65, 0x74, 0x41,
+	0x6c, 0x6c, 0x4d, 0x68, 0x73, 0x12, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x15, 0x2e,
+	0x61, 0x64, 0x6d, 0x69, 0x6e, 0x2e, 0x47, 0x65, 0x74, 0x4d, 0x68, 0x73, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x30, 0x01, 0x12, 0x38, 0x0a, 0x07, 0x45, 0x64, 0x69, 0x74,
+	0x4d, 0x68, 0x73, 0x12, 0x14, 0x2e, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x2e, 0x45, 0x64, 0x69, 0x4d,
+	0x68, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x61, 0x64, 0x6d, 0x69,
+	0x6e, 0x2e, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x22, 0x00, 0x12, 0x3d, 0x0a, 0x09, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4d, 0x68, 0x73, 0x12,
+	0x17, 0x2e, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4d, 0x68,
+	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x61, 0x64, 0x6d, 0x69, 0x6e,
+	0x2e, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
+	0x00, 0x12, 0x42, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x44, 0x6f, 0x73, 0x65, 0x6e,
+	0x12, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62,
+	0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x17, 0x2e, 0x61, 0x64, 0x6d, 0x69, 0x6e,
+	0x2e, 0x47, 0x65, 0x74, 0x44, 0x6f, 0x73, 0x65, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x00, 0x30, 0x01, 0x12, 0x3f, 0x0a, 0x0b, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x44,
+	0x6f, 0x73, 0x65, 0x6e, 0x12, 0x17, 0x2e, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x2e, 0x45, 0x64, 0x69,
+	0x74, 0x44, 0x6f, 0x73, 0x65, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e,
+	0x61, 0x64, 0x6d, 0x69, 0x6e, 0x2e, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x3f, 0x0a, 0x0b, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x4b, 0x65, 0x6c, 0x61, 0x73, 0x12, 0x17, 0x2e, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x2e, 0x45, 0x64,
+	0x69, 0x74, 0x4b, 0x65, 0x6c, 0x61, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x15,
+	0x2e, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x2e, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x0b, 0x5a, 0x09, 0x63, 0x6f, 0x6c, 0x6c, 0x65,
+	0x67, 0x65, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -388,32 +635,43 @@ func file_collegepb_college_proto_rawDescGZIP() []byte {
 	return file_collegepb_college_proto_rawDescData
 }
 
-var file_collegepb_college_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_collegepb_college_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_collegepb_college_proto_goTypes = []interface{}{
-	(*Mahasiswa)(nil),         // 0: admin.Mahasiswa
-	(*CreateMhsRequest)(nil),  // 1: admin.CreateMhsRequest
-	(*GetMhsResponse)(nil),    // 2: admin.GetMhsResponse
-	(*EdiMhsRequest)(nil),     // 3: admin.EdiMhsRequest
-	(*ResultMhsResponse)(nil), // 4: admin.ResultMhsResponse
-	(*DeleteMhsRequest)(nil),  // 5: admin.DeleteMhsRequest
-	(*empty.Empty)(nil),       // 6: google.protobuf.Empty
+	(*Mahasiswa)(nil),        // 0: admin.Mahasiswa
+	(*Dosen)(nil),            // 1: admin.Dosen
+	(*CreateMhsRequest)(nil), // 2: admin.CreateMhsRequest
+	(*GetMhsResponse)(nil),   // 3: admin.GetMhsResponse
+	(*EdiMhsRequest)(nil),    // 4: admin.EdiMhsRequest
+	(*DeleteMhsRequest)(nil), // 5: admin.DeleteMhsRequest
+	(*GetDosenResponse)(nil), // 6: admin.GetDosenResponse
+	(*EditDosenRequest)(nil), // 7: admin.EditDosenRequest
+	(*EditKelasRequest)(nil), // 8: admin.EditKelasRequest
+	(*ResultResponse)(nil),   // 9: admin.ResultResponse
+	(*empty.Empty)(nil),      // 10: google.protobuf.Empty
 }
 var file_collegepb_college_proto_depIdxs = []int32{
-	0, // 0: admin.CreateMhsRequest.mahasiswa:type_name -> admin.Mahasiswa
-	0, // 1: admin.GetMhsResponse.mhs:type_name -> admin.Mahasiswa
-	1, // 2: admin.AdminService.CreateMhs:input_type -> admin.CreateMhsRequest
-	6, // 3: admin.AdminService.GetAllMhs:input_type -> google.protobuf.Empty
-	3, // 4: admin.AdminService.EditMhs:input_type -> admin.EdiMhsRequest
-	3, // 5: admin.AdminService.DeleteMhs:input_type -> admin.EdiMhsRequest
-	4, // 6: admin.AdminService.CreateMhs:output_type -> admin.ResultMhsResponse
-	2, // 7: admin.AdminService.GetAllMhs:output_type -> admin.GetMhsResponse
-	4, // 8: admin.AdminService.EditMhs:output_type -> admin.ResultMhsResponse
-	4, // 9: admin.AdminService.DeleteMhs:output_type -> admin.ResultMhsResponse
-	6, // [6:10] is the sub-list for method output_type
-	2, // [2:6] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	0,  // 0: admin.CreateMhsRequest.mahasiswa:type_name -> admin.Mahasiswa
+	0,  // 1: admin.GetMhsResponse.mhs:type_name -> admin.Mahasiswa
+	1,  // 2: admin.GetDosenResponse.dosen:type_name -> admin.Dosen
+	2,  // 3: admin.AdminService.CreateMhs:input_type -> admin.CreateMhsRequest
+	10, // 4: admin.AdminService.GetAllMhs:input_type -> google.protobuf.Empty
+	4,  // 5: admin.AdminService.EditMhs:input_type -> admin.EdiMhsRequest
+	5,  // 6: admin.AdminService.DeleteMhs:input_type -> admin.DeleteMhsRequest
+	10, // 7: admin.AdminService.GetAllDosen:input_type -> google.protobuf.Empty
+	7,  // 8: admin.AdminService.UpdateDosen:input_type -> admin.EditDosenRequest
+	8,  // 9: admin.AdminService.UpdateKelas:input_type -> admin.EditKelasRequest
+	9,  // 10: admin.AdminService.CreateMhs:output_type -> admin.ResultResponse
+	3,  // 11: admin.AdminService.GetAllMhs:output_type -> admin.GetMhsResponse
+	9,  // 12: admin.AdminService.EditMhs:output_type -> admin.ResultResponse
+	9,  // 13: admin.AdminService.DeleteMhs:output_type -> admin.ResultResponse
+	6,  // 14: admin.AdminService.GetAllDosen:output_type -> admin.GetDosenResponse
+	9,  // 15: admin.AdminService.UpdateDosen:output_type -> admin.ResultResponse
+	9,  // 16: admin.AdminService.UpdateKelas:output_type -> admin.ResultResponse
+	10, // [10:17] is the sub-list for method output_type
+	3,  // [3:10] is the sub-list for method input_type
+	3,  // [3:3] is the sub-list for extension type_name
+	3,  // [3:3] is the sub-list for extension extendee
+	0,  // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_collegepb_college_proto_init() }
@@ -435,7 +693,7 @@ func file_collegepb_college_proto_init() {
 			}
 		}
 		file_collegepb_college_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateMhsRequest); i {
+			switch v := v.(*Dosen); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -447,7 +705,7 @@ func file_collegepb_college_proto_init() {
 			}
 		}
 		file_collegepb_college_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetMhsResponse); i {
+			switch v := v.(*CreateMhsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -459,7 +717,7 @@ func file_collegepb_college_proto_init() {
 			}
 		}
 		file_collegepb_college_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EdiMhsRequest); i {
+			switch v := v.(*GetMhsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -471,7 +729,7 @@ func file_collegepb_college_proto_init() {
 			}
 		}
 		file_collegepb_college_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ResultMhsResponse); i {
+			switch v := v.(*EdiMhsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -494,6 +752,54 @@ func file_collegepb_college_proto_init() {
 				return nil
 			}
 		}
+		file_collegepb_college_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetDosenResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_collegepb_college_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*EditDosenRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_collegepb_college_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*EditKelasRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_collegepb_college_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ResultResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -501,7 +807,7 @@ func file_collegepb_college_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_collegepb_college_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -527,10 +833,13 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type AdminServiceClient interface {
-	CreateMhs(ctx context.Context, in *CreateMhsRequest, opts ...grpc.CallOption) (*ResultMhsResponse, error)
+	CreateMhs(ctx context.Context, in *CreateMhsRequest, opts ...grpc.CallOption) (*ResultResponse, error)
 	GetAllMhs(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (AdminService_GetAllMhsClient, error)
-	EditMhs(ctx context.Context, in *EdiMhsRequest, opts ...grpc.CallOption) (*ResultMhsResponse, error)
-	DeleteMhs(ctx context.Context, in *EdiMhsRequest, opts ...grpc.CallOption) (*ResultMhsResponse, error)
+	EditMhs(ctx context.Context, in *EdiMhsRequest, opts ...grpc.CallOption) (*ResultResponse, error)
+	DeleteMhs(ctx context.Context, in *DeleteMhsRequest, opts ...grpc.CallOption) (*ResultResponse, error)
+	GetAllDosen(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (AdminService_GetAllDosenClient, error)
+	UpdateDosen(ctx context.Context, in *EditDosenRequest, opts ...grpc.CallOption) (*ResultResponse, error)
+	UpdateKelas(ctx context.Context, in *EditKelasRequest, opts ...grpc.CallOption) (*ResultResponse, error)
 }
 
 type adminServiceClient struct {
@@ -541,8 +850,8 @@ func NewAdminServiceClient(cc grpc.ClientConnInterface) AdminServiceClient {
 	return &adminServiceClient{cc}
 }
 
-func (c *adminServiceClient) CreateMhs(ctx context.Context, in *CreateMhsRequest, opts ...grpc.CallOption) (*ResultMhsResponse, error) {
-	out := new(ResultMhsResponse)
+func (c *adminServiceClient) CreateMhs(ctx context.Context, in *CreateMhsRequest, opts ...grpc.CallOption) (*ResultResponse, error) {
+	out := new(ResultResponse)
 	err := c.cc.Invoke(ctx, "/admin.AdminService/CreateMhs", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -582,8 +891,8 @@ func (x *adminServiceGetAllMhsClient) Recv() (*GetMhsResponse, error) {
 	return m, nil
 }
 
-func (c *adminServiceClient) EditMhs(ctx context.Context, in *EdiMhsRequest, opts ...grpc.CallOption) (*ResultMhsResponse, error) {
-	out := new(ResultMhsResponse)
+func (c *adminServiceClient) EditMhs(ctx context.Context, in *EdiMhsRequest, opts ...grpc.CallOption) (*ResultResponse, error) {
+	out := new(ResultResponse)
 	err := c.cc.Invoke(ctx, "/admin.AdminService/EditMhs", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -591,9 +900,59 @@ func (c *adminServiceClient) EditMhs(ctx context.Context, in *EdiMhsRequest, opt
 	return out, nil
 }
 
-func (c *adminServiceClient) DeleteMhs(ctx context.Context, in *EdiMhsRequest, opts ...grpc.CallOption) (*ResultMhsResponse, error) {
-	out := new(ResultMhsResponse)
+func (c *adminServiceClient) DeleteMhs(ctx context.Context, in *DeleteMhsRequest, opts ...grpc.CallOption) (*ResultResponse, error) {
+	out := new(ResultResponse)
 	err := c.cc.Invoke(ctx, "/admin.AdminService/DeleteMhs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) GetAllDosen(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (AdminService_GetAllDosenClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_AdminService_serviceDesc.Streams[1], "/admin.AdminService/GetAllDosen", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &adminServiceGetAllDosenClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type AdminService_GetAllDosenClient interface {
+	Recv() (*GetDosenResponse, error)
+	grpc.ClientStream
+}
+
+type adminServiceGetAllDosenClient struct {
+	grpc.ClientStream
+}
+
+func (x *adminServiceGetAllDosenClient) Recv() (*GetDosenResponse, error) {
+	m := new(GetDosenResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *adminServiceClient) UpdateDosen(ctx context.Context, in *EditDosenRequest, opts ...grpc.CallOption) (*ResultResponse, error) {
+	out := new(ResultResponse)
+	err := c.cc.Invoke(ctx, "/admin.AdminService/UpdateDosen", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) UpdateKelas(ctx context.Context, in *EditKelasRequest, opts ...grpc.CallOption) (*ResultResponse, error) {
+	out := new(ResultResponse)
+	err := c.cc.Invoke(ctx, "/admin.AdminService/UpdateKelas", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -602,27 +961,39 @@ func (c *adminServiceClient) DeleteMhs(ctx context.Context, in *EdiMhsRequest, o
 
 // AdminServiceServer is the server API for AdminService service.
 type AdminServiceServer interface {
-	CreateMhs(context.Context, *CreateMhsRequest) (*ResultMhsResponse, error)
+	CreateMhs(context.Context, *CreateMhsRequest) (*ResultResponse, error)
 	GetAllMhs(*empty.Empty, AdminService_GetAllMhsServer) error
-	EditMhs(context.Context, *EdiMhsRequest) (*ResultMhsResponse, error)
-	DeleteMhs(context.Context, *EdiMhsRequest) (*ResultMhsResponse, error)
+	EditMhs(context.Context, *EdiMhsRequest) (*ResultResponse, error)
+	DeleteMhs(context.Context, *DeleteMhsRequest) (*ResultResponse, error)
+	GetAllDosen(*empty.Empty, AdminService_GetAllDosenServer) error
+	UpdateDosen(context.Context, *EditDosenRequest) (*ResultResponse, error)
+	UpdateKelas(context.Context, *EditKelasRequest) (*ResultResponse, error)
 }
 
 // UnimplementedAdminServiceServer can be embedded to have forward compatible implementations.
 type UnimplementedAdminServiceServer struct {
 }
 
-func (*UnimplementedAdminServiceServer) CreateMhs(context.Context, *CreateMhsRequest) (*ResultMhsResponse, error) {
+func (*UnimplementedAdminServiceServer) CreateMhs(context.Context, *CreateMhsRequest) (*ResultResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateMhs not implemented")
 }
 func (*UnimplementedAdminServiceServer) GetAllMhs(*empty.Empty, AdminService_GetAllMhsServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetAllMhs not implemented")
 }
-func (*UnimplementedAdminServiceServer) EditMhs(context.Context, *EdiMhsRequest) (*ResultMhsResponse, error) {
+func (*UnimplementedAdminServiceServer) EditMhs(context.Context, *EdiMhsRequest) (*ResultResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method EditMhs not implemented")
 }
-func (*UnimplementedAdminServiceServer) DeleteMhs(context.Context, *EdiMhsRequest) (*ResultMhsResponse, error) {
+func (*UnimplementedAdminServiceServer) DeleteMhs(context.Context, *DeleteMhsRequest) (*ResultResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteMhs not implemented")
+}
+func (*UnimplementedAdminServiceServer) GetAllDosen(*empty.Empty, AdminService_GetAllDosenServer) error {
+	return status.Errorf(codes.Unimplemented, "method GetAllDosen not implemented")
+}
+func (*UnimplementedAdminServiceServer) UpdateDosen(context.Context, *EditDosenRequest) (*ResultResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateDosen not implemented")
+}
+func (*UnimplementedAdminServiceServer) UpdateKelas(context.Context, *EditKelasRequest) (*ResultResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateKelas not implemented")
 }
 
 func RegisterAdminServiceServer(s *grpc.Server, srv AdminServiceServer) {
@@ -687,7 +1058,7 @@ func _AdminService_EditMhs_Handler(srv interface{}, ctx context.Context, dec fun
 }
 
 func _AdminService_DeleteMhs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EdiMhsRequest)
+	in := new(DeleteMhsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -699,7 +1070,64 @@ func _AdminService_DeleteMhs_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: "/admin.AdminService/DeleteMhs",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AdminServiceServer).DeleteMhs(ctx, req.(*EdiMhsRequest))
+		return srv.(AdminServiceServer).DeleteMhs(ctx, req.(*DeleteMhsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_GetAllDosen_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(empty.Empty)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(AdminServiceServer).GetAllDosen(m, &adminServiceGetAllDosenServer{stream})
+}
+
+type AdminService_GetAllDosenServer interface {
+	Send(*GetDosenResponse) error
+	grpc.ServerStream
+}
+
+type adminServiceGetAllDosenServer struct {
+	grpc.ServerStream
+}
+
+func (x *adminServiceGetAllDosenServer) Send(m *GetDosenResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _AdminService_UpdateDosen_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EditDosenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).UpdateDosen(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/admin.AdminService/UpdateDosen",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).UpdateDosen(ctx, req.(*EditDosenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_UpdateKelas_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EditKelasRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).UpdateKelas(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/admin.AdminService/UpdateKelas",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).UpdateKelas(ctx, req.(*EditKelasRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -720,11 +1148,24 @@ var _AdminService_serviceDesc = grpc.ServiceDesc{
 			MethodName: "DeleteMhs",
 			Handler:    _AdminService_DeleteMhs_Handler,
 		},
+		{
+			MethodName: "UpdateDosen",
+			Handler:    _AdminService_UpdateDosen_Handler,
+		},
+		{
+			MethodName: "UpdateKelas",
+			Handler:    _AdminService_UpdateKelas_Handler,
+		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "GetAllMhs",
 			Handler:       _AdminService_GetAllMhs_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "GetAllDosen",
+			Handler:       _AdminService_GetAllDosen_Handler,
 			ServerStreams: true,
 		},
 	},

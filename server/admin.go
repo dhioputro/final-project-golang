@@ -31,24 +31,35 @@ var dosen = make(map[string]Dosen)
 type Server struct {
 }
 
-func (s Server) DeleteMhs(ctx context.Context, request *collegepb.EdiMhsRequest) (*collegepb.ResultMhsResponse, error) {
-	id := request.Id
-	if _, found := mhs[id]; found {
-		delete(mhs, id)
-
-		response := &collegepb.ResultMhsResponse{
-			Result: "mahasiswa id =" + id + " berhasil dihapus",
+func (s Server) GetAllDosen(e *empty.Empty, stream collegepb.AdminService_GetAllDosenServer) error {
+	log.Printf("Get All Dosen Send to Client\n")
+	for _, getDosen := range dosen {
+		response := &collegepb.GetDosenResponse{
+			Dosen: &collegepb.Dosen{
+				Id:    getDosen.Id,
+				Nama:  getDosen.Nama,
+				Kelas: getDosen.Kelas,
+			},
 		}
-		return response, nil
-	} else {
-		response := &collegepb.ResultMhsResponse{
-			Result: "data tidak ditemukan",
-		}
-		return response, nil
+		log.Printf("mengirim response : %v\n", response)
+		_ = stream.Send(response)
 	}
+	return nil
 }
 
-func (s Server) EditMhs(ctx context.Context, request *collegepb.EdiMhsRequest) (*collegepb.ResultMhsResponse, error) {
+func (s Server) CreateMhs(ctx context.Context, request *collegepb.CreateMhsRequest) (*collegepb.ResultResponse, error) {
+	mhsCreate(request.Mahasiswa.Nama)
+
+	response := &collegepb.ResultResponse{
+		Result: "Mahasiswa Sukses Ditambahkan",
+	}
+
+	log.Printf("Success : %v\n", response)
+
+	return response, nil
+}
+
+func (s Server) EditMhs(ctx context.Context, request *collegepb.EdiMhsRequest) (*collegepb.ResultResponse, error) {
 	id := request.Id
 	if _, found := mhs[id]; found {
 		namaBaru := request.Nama
@@ -58,12 +69,67 @@ func (s Server) EditMhs(ctx context.Context, request *collegepb.EdiMhsRequest) (
 			Nama: namaBaru,
 		}
 
-		response := &collegepb.ResultMhsResponse{
+		response := &collegepb.ResultResponse{
 			Result: "mahasiswa id =" + id + " berhasil ditambahkan",
 		}
 		return response, nil
 	} else {
-		response := &collegepb.ResultMhsResponse{
+		response := &collegepb.ResultResponse{
+			Result: "data tidak ditemukan",
+		}
+		return response, nil
+	}
+}
+
+func (s Server) UpdateDosen(ctx context.Context, request *collegepb.EditDosenRequest) (*collegepb.ResultResponse, error) {
+	id := request.Id
+	if _, found := dosen[id]; found {
+		namaBaru := request.Nama
+
+		dosen[id] = Dosen{
+			Id:   id,
+			Nama: namaBaru,
+		}
+		response := &collegepb.ResultResponse{
+			Result: "dosen id =" + id + " berhasil diubah",
+		}
+		return response, nil
+	}
+	response := &collegepb.ResultResponse{
+		Result: "dosen id =" + id + " tidak ditemukan",
+	}
+
+	return response, nil
+}
+
+func (s Server) UpdateKelas(ctx context.Context, request *collegepb.EditKelasRequest) (*collegepb.ResultResponse, error) {
+	id := request.Id
+	if _, found := dosen[id]; found {
+		kelasBaru := request.Kelas
+
+		dosen[id] = Dosen{
+			Id:    id,
+			Kelas: kelasBaru,
+		}
+		response := &collegepb.ResultResponse{
+			Result: "kelas id =" + id + " berhasil diubah",
+		}
+		return response, nil
+	}
+	return nil, nil
+}
+
+func (s Server) DeleteMhs(ctx context.Context, request *collegepb.DeleteMhsRequest) (*collegepb.ResultResponse, error) {
+	id := request.Id
+	if _, found := mhs[id]; found {
+		delete(mhs, id)
+
+		response := &collegepb.ResultResponse{
+			Result: "mahasiswa id =" + id + " berhasil dihapus",
+		}
+		return response, nil
+	} else {
+		response := &collegepb.ResultResponse{
 			Result: "data tidak ditemukan",
 		}
 		return response, nil
@@ -85,20 +151,10 @@ func (s Server) GetAllMhs(empty *empty.Empty, stream collegepb.AdminService_GetA
 	return nil
 }
 
-func (s Server) CreateMhs(ctx context.Context, request *collegepb.CreateMhsRequest) (*collegepb.ResultMhsResponse, error) {
-	mhsCreate(request.Mahasiswa.Nama)
-
-	response := &collegepb.ResultMhsResponse{
-		Result: "Mahasiswa Sukses Ditambahkan",
-	}
-
-	log.Printf("Success : %v\n", response)
-
-	return response, nil
-}
-
 func main() {
-	mhsGenerator(5)
+	//mhsGenerator(5)
+	kelas := []string{"algoritma", "dasar pemograman", "aljabar"}
+	dosenGenerator(kelas)
 
 	fmt.Println("Go gRPC Beginners Tutorial!")
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", 8080))
