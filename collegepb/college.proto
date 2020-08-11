@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package admin;
 import "google/protobuf/empty.proto";
-option go_package = "collegepb";
+option go_package = ".;collegepb";
 
 message Mahasiswa {
   string id = 1;
@@ -53,6 +53,24 @@ message ResultResponse{
   string result = 1;
 }
 
+// Nilai mhs
+message inputDataReq {
+  string id = 1;
+  string kelas = 2;
+  int32 absen = 3;
+  float nilai = 4;
+}
+
+// message reportKelas{
+//   string idMhs = 1;
+// 	string namaMhs = 2;  
+//   Kelas kelas = 3;
+// }
+
+// message GetReportResponse {
+//   reportKelas report = 1;
+// }
+
 service AdminService {
   rpc CreateMhs(CreateMhsRequest) returns (ResultResponse) {}
   rpc GetAllMhs(google.protobuf.Empty) returns (stream GetMhsResponse) {}
@@ -62,4 +80,7 @@ service AdminService {
   rpc GetAllDosen(google.protobuf.Empty) returns (stream GetDosenResponse) {}
   rpc UpdateDosen(EditDosenRequest) returns (ResultResponse) {}
   rpc UpdateKelas(EditKelasRequest) returns (ResultResponse) {}
+
+  rpc UpdateDataMhs(inputDataReq) returns (ResultResponse) {}
+  // rpc GetReportKelas(google.protobuf.Empty) returns (stream GetReportResponse) {}
 }

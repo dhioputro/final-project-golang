@@ -4,10 +4,11 @@ import (
 	"college-final-project/collegepb"
 	"context"
 	"fmt"
-	"github.com/golang/protobuf/ptypes/empty"
-	"google.golang.org/grpc"
 	"io"
 	"log"
+
+	"github.com/golang/protobuf/ptypes/empty"
+	"google.golang.org/grpc"
 )
 
 func main() {

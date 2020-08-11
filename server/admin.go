@@ -5,13 +5,14 @@ import (
 	"college-final-project/collegepb"
 	"context"
 	"fmt"
+	"log"
+	"net"
+	"os"
+
 	"github.com/Pallinder/go-randomdata"
 	"github.com/chilts/sid"
 	"github.com/golang/protobuf/ptypes/empty"
 	"google.golang.org/grpc"
-	"log"
-	"net"
-	"os"
 )
 
 type Mahasiswa struct {
@@ -25,8 +26,24 @@ type Dosen struct {
 	Kelas string
 }
 
+type resumeMhs struct {
+	idMhs   string
+	namaMhs string
+	kelas   [3]Kelas
+}
+
+type Kelas struct {
+	idMhs   string  `json:"idMhs"`
+	namaMhs string  `json:"namaMhs"`
+	nilai   float32 `json:"nilai"`
+	absen   int32   `json:"absen"`
+}
+
 var mhs = make(map[string]Mahasiswa)
 var dosen = make(map[string]Dosen)
+var kelas = make(map[string]Kelas)
+var dataMhs = make(map[string]resumeMhs)
+var kelasArr [3]Kelas
 
 type Server struct {
 }
@@ -150,6 +167,28 @@ func (s Server) GetAllMhs(empty *empty.Empty, stream collegepb.AdminService_GetA
 	}
 	return nil
 }
+
+// ================================================================================== //
+
+func (s Server) UpdateDataMhs(ctx context.Context, request *collegepb.InputDataReq) (*collegepb.ResultResponse, error) {
+	id := request.Id
+
+	if _, found := mhs[id]; found {
+		dataMhs := findMahasiswa(id)
+
+		response := &collegepb.ResultResponse{
+			Result: inputNilaiMhs(request, dataMhs),
+		}
+		return response, nil
+	}
+	response := &collegepb.ResultResponse{
+		Result: "dosen id =" + id + " tidak ditemukan",
+	}
+
+	return response, nil
+}
+
+// ================================================================================== //
 
 func main() {
 	//mhsGenerator(5)
@@ -325,4 +364,104 @@ func ScanString(text string) string {
 	line := scanner.Text()
 
 	return line
+}
+
+//========================================================================//
+
+func findMahasiswa(id string) resumeMhs {
+	if _, getMhs := mhs[id]; getMhs {
+		nama := mhs[id].Nama
+		dataMhs[id] = resumeMhs{
+			idMhs:   id,
+			namaMhs: nama,
+		}
+	}
+	return dataMhs[id]
+}
+
+func inputNilaiMhs(request *collegepb.InputDataReq, data resumeMhs) string {
+	var result string
+	id := data.idMhs
+	nama := data.namaMhs
+	subj := request.Kelas
+	inputA := request.Absen
+	inputN := request.Nilai
+
+	switch subj {
+	case "algoritma":
+		kelas[subj] = Kelas{
+			idMhs:   id,
+			namaMhs: nama,
+			absen:   inputA,
+			nilai:   inputN,
+		}
+
+		// hitung nilai total
+		// bobotAbsen := (float32(inputA) / 14) * 30
+		// bobotNilai := inputN * 70 / 100
+		// totalNilai := bobotAbsen + bobotNilai
+
+		// fmt.Println(bobotAbsen)
+		// fmt.Println(bobotNilai)
+		// fmt.Println(totalNilai)
+
+		kelasArr[0] = kelas[subj]
+		data = resumeMhs{
+			idMhs:   id,
+			namaMhs: nama,
+			kelas:   kelasArr,
+		}
+
+		dataMhs[subj] = data
+		fmt.Printf("Nilai Algoritma %s, telah di input dengan nilai %g\n", nama, inputN)
+		result = "Nilai dan absen" + subj + " " + nama + ", sukses di input!"
+
+	case "dasar pemrograman":
+		kelas[subj] = Kelas{
+			idMhs:   id,
+			namaMhs: nama,
+			absen:   inputA,
+			nilai:   inputN,
+		}
+
+		// input ke data mahasiswa
+		kelasArr[1] = kelas[subj]
+		data = resumeMhs{
+			idMhs:   id,
+			namaMhs: nama,
+			kelas:   kelasArr,
+		}
+
+		// masukkan ke map dataMhs
+		dataMhs[id] = data
+		fmt.Printf("Nilai Algoritma %s, telah di input dengan nilai %g\n", nama, inputN)
+		result = "Nilai dan absen" + subj + " " + nama + ", sukses di input!"
+
+	case "aljabar":
+		kelas[subj] = Kelas{
+			idMhs:   id,
+			namaMhs: nama,
+			absen:   inputA,
+			nilai:   inputN,
+		}
+
+		// input ke data mahasiswa
+		kelasArr[2] = kelas[subj]
+		data = resumeMhs{
+			idMhs:   id,
+			namaMhs: nama,
+			kelas:   kelasArr,
+		}
+
+		// masukkan ke map dataMhs
+		dataMhs[id] = data
+		fmt.Printf("Nilai Algoritma %s, telah di input dengan nilai %g\n", nama, inputN)
+		result = "Nilai dan absen" + subj + " " + nama + ", sukses di input!"
+	default:
+		fmt.Println("Pilihan yang anda masukkan tidak valid")
+		fmt.Println()
+		break
+	}
+
+	return result
 }
